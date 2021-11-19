@@ -1,712 +1,1 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
-  <title>BODY BALANCE</title>
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <style>
-    .main-content{
-      padding-top: 150px;
-    }
-    .content-bmi-input{
-      max-width: 650px;
-      margin: 0 auto;
-    }
-  </style>
-  <style>
-    .progressbar {
-      counter-reset: step;
-      display: flex;
-    }
-    .progressbar li {
-      list-style-type: none;
-      width: 20%;
-      /*float: left;*/
-      font-size: 12px;
-      position: relative;
-      text-align: center;
-      text-transform: uppercase;
-      color: #7d7d7d;
-    }
-    .progressbar li:before {
-      width: 30px;
-      height: 30px;
-      content: counter(step);
-      counter-increment: step;
-      line-height: 30px;
-      border: 2px solid #7d7d7d;
-      display: block;
-      text-align: center;
-      margin: 0 auto 10px auto;
-      border-radius: 50%;
-      background-color: white;
-    }
-    .progressbar li:after {
-      width: 100%;
-      height: 2px;
-      content: '';
-      position: absolute;
-      background-color: #7d7d7d;
-      top: 15px;
-      left: -50%;
-      z-index: -1;
-    }
-    .progressbar li:first-child:after {
-      content: none;
-    }
-    .progressbar li.active {
-      color: green;
-    }
-    .progressbar li.active:before {
-      border-color: #55b776;
-    }
-    .progressbar li.active + li:after {
-      background-color: #55b776;
-    }
-  </style>
-  <style>
-    .wrapper-steps-content{
-      height: calc(100vh - 280px);
-      overflow: hidden;
-    }
-
-    .step{
-      display: none;
-    }
-    .step.active{
-      display: block;
-    }
-
-    .wrapper-steps-button button{
-      visibility: hidden;
-    }
-    .wrapper-steps-button button.active{
-      visibility: visible;
-    }
-
-    @media (min-width: 768px){
-      section {
-        padding: 32px 0;
-      }
-    }
-  </style>
-
-  <style>
-    .middle {
-      width: 100%;
-      text-align: center;
-      /* Made by */
-    }
-    .middle h1 {
-      font-family: "Inter", sans-serif;
-      color: #fff;
-    }
-    .middle input[type=radio] {
-      display: none;
-    }
-    .middle input[type=radio]:checked + .box {
-        color: white;
-        background-color: #007e90;
-    }
-    .middle input[type=radio]:checked + .box .box-content:before{
-      transform: translateY(70px);
-    }
-    .middle input[type=radio]:checked + .box span {
-      transform: translateY(0px);
-      opacity: 1;
-    }
-    .middle .box {
-      width: 300px;
-      height: 200px;
-      background-color: #6af0fd52;
-      transition: all 250ms ease;
-        color: #007e90;
-      will-change: transition;
-      display: inline-block;
-      text-align: center;
-      cursor: pointer;
-      position: relative;
-      font-family: "Inter", sans-serif;
-      font-weight: 900;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .middle .box:active {
-      transform: translateY(10px);
-    }
-    .middle .box .box-content {
-      /*position: absolute;*/
-      /*transform: translate(0, 60px);*/
-      /*left: 0;*/
-      /*right: 0;*/
-      /*transition: all 300ms ease;*/
-      font-size: 1.5em;
-      user-select: none;
-    }
-    .middle .box-content{
-    }
-    .box.active .box-content{
-    }
-    .middle .box .box-content span {
-      font-size: 1.5em;
-      display: block;
-      transform: translateY(-80px);
-      opacity: 0;
-      transition: all 300ms ease-in-out;
-      font-weight: normal;
-      color: white;
-    }
-    .middle p {
-      font-family: "Inter", sans-serif;
-      font-weight: 400;
-    }
-    .middle p a {
-      text-decoration: underline;
-      font-weight: bold;
-    }
-    .middle p span:after {
-      content: "";
-      font-family: FontAwesome;
-      color: yellow;
-    }
-  </style>
-
-    <style>
-        <style>
-        .card-checkbox {
-            --background: #fff;
-            --background-checkbox: #0082ff;
-            --background-image: #fff, rgba(0, 107, 175, 0.2);
-            --text-color: #666;
-            --text-headline: #000;
-            --card-checkbox-shadow: #0082ff;
-            /*--card-checkbox-height: 190px;*/
-            /*--card-checkbox-width: 190px;*/
-            --card-checkbox-radius: 12px;
-            /*--header-height: 47px;*/
-            --blend-mode: overlay;
-            --transition: 0.15s;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            height: 100%;
-        }
-        .card-checkbox:nth-child(odd) .card-checkbox__body-cover-image {
-            --x-y1: 100% 90%;
-            --x-y2: 67% 83%;
-            --x-y3: 33% 90%;
-            --x-y4: 0% 85%;
-        }
-        .card-checkbox:nth-child(even) .card-checkbox__body-cover-image {
-            --x-y1: 100% 85%;
-            --x-y2: 73% 93%;
-            --x-y3: 25% 85%;
-            --x-y4: 0% 90%;
-        }
-        .card-checkbox__input {
-            position: absolute;
-            display: block;
-            outline: none;
-            border: none;
-            background: none;
-            padding: 0;
-            margin: 0;
-            -webkit-appearance: none;
-        }
-        .card-checkbox__input:checked ~ .card-checkbox__body {
-            --shadow: 0 0 0 3px var(--card-checkbox-shadow);
-        }
-        .card-checkbox__input:checked ~ .card-checkbox__body .card-checkbox__body-cover-checkbox {
-            --check-bg: var(--background-checkbox);
-            --check-border: #fff;
-            --check-scale: 1;
-            --check-opacity: 1;
-        }
-        .card-checkbox__input:checked ~ .card-checkbox__body .card-checkbox__body-cover-checkbox--svg {
-            --stroke-color: #fff;
-            --stroke-dashoffset: 0;
-        }
-        .card-checkbox__input:checked ~ .card-checkbox__body .card-checkbox__body-cover:after {
-            --opacity-bg: 0;
-        }
-        .card-checkbox__input:checked ~ .card-checkbox__body .card-checkbox__body-cover-image {
-            --filter-bg: grayscale(0);
-        }
-        .card-checkbox__input:disabled ~ .card-checkbox__body {
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
-        .card-checkbox__input:disabled ~ .card-checkbox__body:active {
-            --scale: 1;
-        }
-        .card-checkbox__body {
-            /*display: grid;*/
-            /*grid-auto-rows: calc(var(--card-checkbox-height) - var(--header-height)) auto;*/
-            background: var(--background);
-            height: var(--card-checkbox-height);
-            width: var(--card-checkbox-width);
-            border-radius: var(--card-checkbox-radius);
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            box-shadow: var(--shadow, 0 4px 4px 0 rgba(0, 0, 0, 0.02));
-            transition: transform var(--transition), box-shadow var(--transition);
-            transform: scale(var(--scale, 1)) translateZ(0);
-            height: 100%;
-        }
-        .card-checkbox__body:active {
-            --scale: 0.96;
-        }
-        .card-checkbox__body-cover {
-            --c-border: var(--card-checkbox-radius) var(--card-checkbox-radius) 0 0;
-            --c-width: 100%;
-            --c-height: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-        .card-checkbox__body-cover:after {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: var(--c-width);
-            height: var(--c-height);
-            border-radius: var(--c-border);
-            background: linear-gradient(to bottom right, var(--background-image));
-            mix-blend-mode: var(--blend-mode);
-            opacity: var(--opacity-bg, 1);
-            transition: opacity var(--transition) linear;
-        }
-        .card-checkbox__body-cover-image {
-            width: var(--c-width);
-            height: var(--c-height);
-            -o-object-fit: cover;
-            object-fit: cover;
-            border-radius: var(--c-border);
-            filter: var(--filter-bg, grayscale(1));
-            -webkit-clip-path: polygon(0% 0%, 100% 0%, var(--x-y1, 100% 90%), var(--x-y2, 67% 83%), var(--x-y3, 33% 90%), var(--x-y4, 0% 85%));
-            clip-path: polygon(0% 0%, 100% 0%, var(--x-y1, 100% 90%), var(--x-y2, 67% 83%), var(--x-y3, 33% 90%), var(--x-y4, 0% 85%));
-        }
-        .card-checkbox__body-cover-checkbox {
-            background: var(--check-bg, var(--background-checkbox));
-            border: 2px solid var(--check-border, #fff);
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            z-index: 1;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            opacity: var(--check-opacity, 0);
-            transition: transform var(--transition), opacity calc(var(--transition) * 1.2) linear;
-            transform: scale(var(--check-scale, 0));
-        }
-        .card-checkbox__body-cover-checkbox--svg {
-            width: 13px;
-            height: 11px;
-            display: inline-block;
-            vertical-align: top;
-            fill: none;
-            margin: 7px 0 0 5px;
-            stroke: var(--stroke-color, #fff);
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            stroke-dasharray: 16px;
-            stroke-dashoffset: var(--stroke-dashoffset, 16px);
-            transition: stroke-dashoffset 0.4s ease var(--transition);
-        }
-        .card-checkbox__body-header {
-            height: var(--header-height);
-            background: var(--background);
-            padding: 0 10px 10px 10px;
-        }
-        .card-checkbox__body-header-title {
-            color: var(--text-headline);
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .card-checkbox__body-header-subtitle {
-            color: var(--text-color);
-            font-weight: 500;
-            font-size: 13px;
-            margin-bottom: 8px;
-        }
-
-        body .socials {
-            position: fixed;
-            display: flex;
-            right: 20px;
-            bottom: 20px;
-        }
-        body .socials > a {
-            display: block;
-            height: 28px;
-            margin-left: 15px;
-        }
-        body .socials > a.dribbble img {
-            height: 28px;
-        }
-        body .socials > a.twitter svg {
-            width: 32px;
-            height: 32px;
-            fill: #1da1f2;
-        }
-        body .grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 1rem;
-        }
-        </style>
-    </style>
-</head>
-
-<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="54">
-<nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark py-2" id="mainNav" style="background: rgb(52, 58, 64);border-style: none;border-color: rgb(255, 255, 255);">
-  <div class="container">
-    <a class="navbar-brand" href="./index.html" style="color: var(--bs-yellow); font-family: 'Kaushan Script', serif; font-weight: bold;">BODYBALANCE</a>
-    <button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <i class="fa fa-bars"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ms-auto text-uppercase">
-        <li class="nav-item">
-          <a class="nav-link" href="./index.html#services">Description</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./index.html#portfolio">Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./index.html#about">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./index.html#team">Team</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./index.html#contact">Contact</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">SIGN UP</a>
-        </li>
-        <li class="nav-item"></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div class="main-content">
-  <div class="container">
-    <ul class="progressbar" style="padding-left: 0">
-      <li id="progrebarStep1" class="">Monitor BMI</li>
-      <li id="progrebarStep2">Expected</li>
-      <li id="progrebarStep3">Nutritions</li>
-      <li id="progrebarStep4">Exercises</li>
-      <li id="progrebarStep5">PT</li>
-    </ul>
-  </div>
-
-  <div class="wrapper-steps">
-    <div class="container">
-      <div class="wrapper-steps-content">
-        <section class="step" data-step="1">
-          <div class="container">
-            <h2 class="text-center text-uppercase mb-4">Monitor BMI</h2>
-            <div class="content-bmi-input">
-              <form class="">
-                <div class="mb-3">
-                  <label for="weight" class="form-label h4">Weight</label>
-                  <input type="email" id="weight" class="form-control form-control-lg" placeholder="Enter weight in kg"/>
-                </div>
-                <div class="mb-3">
-                  <label for="height" class="form-label h4">Height</label>
-                  <input type="password" id="height" class="form-control form-control-lg" placeholder="Enter height in cm"/>
-                </div>
-              </form>
-            </div>
-          </div>
-        </section>
-        <section class="step" data-step="2">
-          <div class="container">
-            <h2 class="text-center text-uppercase mb-4">Expected</h2>
-            <div class="middle">
-              <h1>CSS Radio Button</h1>
-              <label>
-                <input type="radio" name="radio" checked/>
-                <div class="box">
-                    <div class="box-content">
-                        <span><i class="fa fa-check" aria-hidden="true"></i></span>
-                        <h5>Level 1</h5>
-                        <p>50kg - 55kg</p>
-                    </div>
-                </div>
-              </label>
-
-              <label>
-                <input type="radio" name="radio"/>
-                <div class="box">
-                    <div class="box-content">
-                        <span><i class="fa fa-check" aria-hidden="true"></i></span>
-                        <h5>Level 2</h5>
-                        <p>50kg - 55kg</p>
-                    </div>
-                </div>
-              </label>
-                <label>
-                    <input type="radio" name="radio"/>
-                    <div class="box">
-                        <div class="box-content">
-                            <span><i class="fa fa-check" aria-hidden="true"></i></span>
-                            <h5>Level 3</h5>
-                            <p>50kg - 55kg</p>
-                        </div>
-                    </div>
-                </label>
-                <label>
-                    <input type="radio" name="radio"/>
-                    <div class="box">
-                        <div class="box-content">
-                            <span><i class="fa fa-check" aria-hidden="true"></i></span>
-                            <h5>Level 4</h5>
-                            <p>50kg - 55kg</p>
-                        </div>
-                    </div>
-                </label>
-            </div>
-          </div>
-        </section>
-        <section class="step active" data-step="3">
-          <div class="container">
-              <h5 class="text-center mb-3">Bạn đang thừa cân. Chọn mức bạn mong muốn để bắt đầu chế độ giảm cân</h5>
-            <div class="row">
-                <div class="col-6 col-md-3 col-lg-2">
-                  <label class="card-checkbox">
-                    <input class="card-checkbox__input" type="checkbox"/>
-                    <div class="card-checkbox__body">
-                      <div class="card-checkbox__body-cover"><img class="card-checkbox__body-cover-image" src="https://i.ibb.co/zXmHzBk/category-a.png"/><span class="card-checkbox__body-cover-checkbox">
-          <svg class="card-checkbox__body-cover-checkbox--svg" viewBox="0 0 12 10">
-            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-          </svg></span></div>
-                      <header class="card-checkbox__body-header">
-                        <h5 class="card-checkbox__body-header-title">Category A</h5>
-                        <p class="card-checkbox__body-header-subtitle">Motorcycles</p>
-                      </header>
-                    </div>
-                  </label>
-                </div>
-                <div class="col-6 col-md-3 col-lg-2">
-                  <label class="card-checkbox">
-                    <input class="card-checkbox__input" type="checkbox"/>
-                    <div class="card-checkbox__body">
-                      <div class="card-checkbox__body-cover"><img class="card-checkbox__body-cover-image" src="https://i.ibb.co/cXjw2Gz/category-b.png"/><span class="card-checkbox__body-cover-checkbox">
-          <svg class="card-checkbox__body-cover-checkbox--svg" viewBox="0 0 12 10">
-            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-          </svg></span></div>
-                      <header class="card-checkbox__body-header">
-                        <h5 class="card-checkbox__body-header-title">Category B</h5>
-                        <p class="card-checkbox__body-header-subtitle">Cars and ATVs</p>
-                      </header>
-                    </div>
-                  </label>
-                </div>
-                <div class="col-6 col-md-3 col-lg-2">
-                  <label class="card-checkbox">
-                    <input class="card-checkbox__input" type="checkbox"/>
-                    <div class="card-checkbox__body">
-                      <div class="card-checkbox__body-cover"><img class="card-checkbox__body-cover-image" src="https://i.ibb.co/nDbfH9B/category-c.png"/><span class="card-checkbox__body-cover-checkbox">
-          <svg class="card-checkbox__body-cover-checkbox--svg" viewBox="0 0 12 10">
-            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-          </svg></span></div>
-                      <header class="card-checkbox__body-header">
-                        <h5 class="card-checkbox__body-header-title">Category C</h5>
-                        <p class="card-checkbox__body-header-subtitle">Large goods vehicle</p>
-                      </header>
-                    </div>
-                  </label>
-                </div>
-                <div class="col-6 col-md-3 col-lg-2">
-                  <label class="card-checkbox">
-                    <input class="card-checkbox__input" type="checkbox"/>
-                    <div class="card-checkbox__body">
-                      <div class="card-checkbox__body-cover"><img class="card-checkbox__body-cover-image" src="https://i.ibb.co/7gSQMmm/category-d.png"/><span class="card-checkbox__body-cover-checkbox">
-          <svg class="card-checkbox__body-cover-checkbox--svg" viewBox="0 0 12 10">
-            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-          </svg></span></div>
-                      <header class="card-checkbox__body-header">
-                        <h5 class="card-checkbox__body-header-title">Category D</h5>
-                        <p class="card-checkbox__body-header-subtitle">Buses</p>
-                      </header>
-                    </div>
-                  </label>
-                </div>
-                <div class="col-6 col-md-3 col-lg-2">
-                  <label class="card-checkbox">
-                    <input class="card-checkbox__input" type="checkbox"/>
-                    <div class="card-checkbox__body">
-                      <div class="card-checkbox__body-cover"><img class="card-checkbox__body-cover-image" src="https://i.ibb.co/0F3SdsX/category-t.png"/><span class="card-checkbox__body-cover-checkbox">
-          <svg class="card-checkbox__body-cover-checkbox--svg" viewBox="0 0 12 10">
-            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-          </svg></span></div>
-                      <header class="card-checkbox__body-header">
-                        <h5 class="card-checkbox__body-header-title">Category T</h5>
-                        <p class="card-checkbox__body-header-subtitle">Tractors and SMV</p>
-                      </header>
-                    </div>
-                  </label>
-                </div>
-                <div class="col-6 col-md-3 col-lg-2">
-                  <label class="card-checkbox">
-                    <input class="card-checkbox__input" type="checkbox"/>
-                    <div class="card-checkbox__body">
-                      <div class="card-checkbox__body-cover"><img class="card-checkbox__body-cover-image" src="https://i.ibb.co/WDwmPy5/other.png"/><span class="card-checkbox__body-cover-checkbox">
-          <svg class="card-checkbox__body-cover-checkbox--svg" viewBox="0 0 12 10">
-            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-          </svg></span></div>
-                      <header class="card-checkbox__body-header">
-                        <h5 class="card-checkbox__body-header-title">Other</h5>
-                        <p class="card-checkbox__body-header-subtitle">Additional categories</p>
-                      </header>
-                    </div>
-                  </label>
-                </div>
-              </div>
-          </div>
-        </section>
-        <section class="step" data-step="4">
-          <div class="container">
-            <h2 class="text-center text-uppercase mb-4">Exercises</h2>
-            <div class="row">
-                <div class="col-6 col-md-3 col-lg-2">
-                    <label class="card-checkbox">
-                        <input class="card-checkbox__input" type="checkbox"/>
-                        <div class="card-checkbox__body">
-                            <div class="card-checkbox__body-cover">
-                                <img class="card-checkbox__body-cover-image" src="https://i.ibb.co/7gSQMmm/category-d.png"/>
-                                <span class="card-checkbox__body-cover-checkbox">
-                          <svg class="card-checkbox__body-cover-checkbox--svg" viewBox="0 0 12 10">
-                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                          </svg>
-                        </span>
-                            </div>
-                            <header class="card-checkbox__body-header">
-                                <h5 class="card-checkbox__body-header-title">Exercise 1</h5>
-                                <p class="card-checkbox__body-header-subtitle">Exercise 1 summary</p>
-                            </header>
-                        </div>
-                    </label>
-                </div>
-                <div class="col-6 col-md-3 col-lg-2">
-                    <label class="card-checkbox">
-                        <input class="card-checkbox__input" type="checkbox"/>
-                        <div class="card-checkbox__body">
-                            <div class="card-checkbox__body-cover">
-                                <img class="card-checkbox__body-cover-image" src="https://i.ibb.co/7gSQMmm/category-d.png"/>
-                                <span class="card-checkbox__body-cover-checkbox">
-                          <svg class="card-checkbox__body-cover-checkbox--svg" viewBox="0 0 12 10">
-                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                          </svg>
-                        </span>
-                            </div>
-                            <header class="card-checkbox__body-header">
-                                <h5 class="card-checkbox__body-header-title">Exercise 1</h5>
-                                <p class="card-checkbox__body-header-subtitle">Exercise 1 summary</p>
-                            </header>
-                        </div>
-                    </label>
-                </div>
-                <div class="col-6 col-md-3 col-lg-2">
-                    <label class="card-checkbox">
-                        <input class="card-checkbox__input" type="checkbox"/>
-                        <div class="card-checkbox__body">
-                            <div class="card-checkbox__body-cover">
-                                <img class="card-checkbox__body-cover-image" src="https://i.ibb.co/7gSQMmm/category-d.png"/>
-                                <span class="card-checkbox__body-cover-checkbox">
-                          <svg class="card-checkbox__body-cover-checkbox--svg" viewBox="0 0 12 10">
-                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                          </svg>
-                        </span>
-                            </div>
-                            <header class="card-checkbox__body-header">
-                                <h5 class="card-checkbox__body-header-title">Exercise 1</h5>
-                                <p class="card-checkbox__body-header-subtitle">Exercise 1 summary</p>
-                            </header>
-                        </div>
-                    </label>
-                </div>
-            </div>
-          </div>
-        </section>
-        <section class="step" data-step="5">
-          <div class="container">
-            <h2 class="text-center text-uppercase mb-4">PT</h2>
-          </div>
-        </section>
-      </div>
-      <div class="wrapper-steps-button d-flex justify-content-between">
-        <button class="btn btn-primary prev">Prev</button>
-        <button class="btn btn-primary next active">Next</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="assets/js/script.min.js"></script>
-
-<script>
-  $('.wrapper-steps-button').on('click', '.prev', function(){
-    displayStep('prev');
-  });
-  $('.wrapper-steps-button').on('click', '.next', function(){
-    displayStep('next');
-  });
-  function displayStep(type = 'next') {
-    let minStep = 1;
-    let maxStep = 5;
-    let currentStep = parseInt($('.step.active').data('step'));
-    if(type == 'next'){
-      let nextStep = currentStep + 1;
-      $('.step').removeClass('active');
-      if(nextStep > maxStep){
-        nextStep = maxStep;
-        $('.wrapper-steps-button .next').removeClass('active');
-      } else {
-        $('.wrapper-steps-button .next').addClass('active');
-      }
-      $('.wrapper-steps-button .prev').addClass('active');
-      $('.step:nth-child('+nextStep+')').addClass('active');
-
-      displayProgressBar(nextStep);
-    } else {
-      let prevStep = currentStep - 1;
-      $('.step').removeClass('active');
-      if(prevStep < minStep){
-        prevStep = minStep;
-        $('.wrapper-steps-button .prev').removeClass('active');
-      } else {
-        $('.wrapper-steps-button .prev').addClass('active');
-      }
-      $('.wrapper-steps-button .next').addClass('active');
-      $('.step:nth-child('+prevStep+')').addClass('active');
-
-      displayProgressBar(prevStep);
-    }
-  }
-
-  function displayProgressBar(completedStep = 0) {
-    $('.progressbar li').removeClass('active');
-    for (let i = 0; i < completedStep; i++){
-      $('#progrebarStep'+i).addClass('active');
-    }
-  }
-</script>
-
-</body>
-</html>
+<!DOCTYPE html><html><head>  <meta charset="utf-8" />  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>  <title>BODY BALANCE</title>  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700"/>  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script"/>  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    <style>    .main-content{      padding-top: 120px;    }    .content-bmi-input{      max-width: 650px;      margin: 0 auto;    }  </style>  <style>    .progressbar {      counter-reset: step;      display: flex;    }    .progressbar li {      list-style-type: none;      width: 20%;      /*float: left;*/      font-size: 12px;      position: relative;      text-align: center;      text-transform: uppercase;      color: #7d7d7d;    }    .progressbar li:before {      width: 30px;      height: 30px;      content: counter(step);      counter-increment: step;      line-height: 30px;      border: 2px solid #7d7d7d;      display: block;      text-align: center;      margin: 0 auto 10px auto;      border-radius: 50%;      background-color: white;    }    .progressbar li:after {      width: 100%;      height: 2px;      content: '';      position: absolute;      background-color: #7d7d7d;      top: 15px;      left: -50%;      z-index: -1;    }    .progressbar li:first-child:after {      content: none;    }    .progressbar li.active {      color: green;    }    .progressbar li.active:before {      border-color: #55b776;    }    .progressbar li.active + li:after {      background-color: #55b776;    }  </style>  <style>    .wrapper-steps-content{      height: calc(100vh - 280px);      overflow: auto;    }        .step{      display: none;    }    .step.active{      display: block;    }        .wrapper-steps-button button{      visibility: hidden;    }    .wrapper-steps-button button.active{      visibility: visible;    }  </style>    <style>    .card-checkbox {      --background: #fff;      --background-checkbox: #0082ff;      --background-image: #fff, rgba(0, 107, 175, 0.2);      --text-color: #666;      --text-headline: #000;      --card-checkbox-shadow: #0082ff;      --card-checkbox-shadow: #20df80;      /*--card-checkbox-height: 190px;*/      /*--card-checkbox-width: 190px;*/      --card-checkbox-radius: 12px;      /*--header-height: 47px;*/      --blend-mode: overlay;      --transition: 0.15s;      -webkit-user-select: none;      -moz-user-select: none;      -ms-user-select: none;      user-select: none;      height: 100%;    }    .card-checkbox:nth-child(odd) .card-checkbox__body-cover-image {      --x-y1: 100% 90%;      --x-y2: 67% 83%;      --x-y3: 33% 90%;      --x-y4: 0% 85%;    }    .card-checkbox:nth-child(even) .card-checkbox__body-cover-image {      --x-y1: 100% 85%;      --x-y2: 73% 93%;      --x-y3: 25% 85%;      --x-y4: 0% 90%;    }    .card-checkbox__input {      position: absolute;      display: block;      outline: none;      border: none;      background: none;      padding: 0;      margin: 0;      -webkit-appearance: none;    }    .card-checkbox__input:checked ~ .card-checkbox__body {      --shadow: 0 0 0 3px var(--card-checkbox-shadow);    }    .card-checkbox__input:checked ~ .card-checkbox__body .card-checkbox__body-cover-checkbox {      --check-bg: var(--background-checkbox);      --check-border: #fff;      --check-scale: 1;      --check-opacity: 1;      --check-bg: #20df80;    }    .card-checkbox__input:checked ~ .card-checkbox__body .card-checkbox__body-cover-checkbox--svg {      --stroke-color: #fff;      --stroke-dashoffset: 0;    }    .card-checkbox__input:checked ~ .card-checkbox__body .card-checkbox__body-cover:after {      --opacity-bg: 0;    }    .card-checkbox__input:checked ~ .card-checkbox__body .card-checkbox__body-cover-image {      --filter-bg: grayscale(0);    }    .card-checkbox__input:disabled ~ .card-checkbox__body {      cursor: not-allowed;      opacity: 0.5;    }    .card-checkbox__input:disabled ~ .card-checkbox__body:active {      --scale: 1;    }    .card-checkbox__body {      /*display: grid;*/      /*grid-auto-rows: calc(var(--card-checkbox-height) - var(--header-height)) auto;*/      background: var(--background);      height: var(--card-checkbox-height);      width: var(--card-checkbox-width);      border-radius: var(--card-checkbox-radius);      overflow: hidden;      position: relative;      cursor: pointer;      box-shadow: var(--shadow, 0 4px 4px 0 rgba(0, 0, 0, 0.02));      transition: transform var(--transition), box-shadow var(--transition);      transform: scale(var(--scale, 1)) translateZ(0);      height: 100%;    }    .card-checkbox__body:active {      --scale: 0.96;    }    .card-checkbox__body-cover {      --c-border: var(--card-checkbox-radius) var(--card-checkbox-radius) 0 0;      --c-width: 100%;      --c-height: 100%;      position: relative;      overflow: hidden;    }    .card-checkbox__body-cover:after {      content: "";      position: absolute;      left: 0;      top: 0;      width: var(--c-width);      height: var(--c-height);      border-radius: var(--c-border);      background: linear-gradient(to bottom right, var(--background-image));      mix-blend-mode: var(--blend-mode);      opacity: var(--opacity-bg, 1);      transition: opacity var(--transition) linear;    }    .card-checkbox__body-cover-image {      width: var(--c-width);      height: var(--c-height);      -o-object-fit: cover;      object-fit: cover;      border-radius: var(--c-border);      filter: var(--filter-bg, grayscale(1));      -webkit-clip-path: polygon(0% 0%, 100% 0%, var(--x-y1, 100% 90%), var(--x-y2, 67% 83%), var(--x-y3, 33% 90%), var(--x-y4, 0% 85%));      clip-path: polygon(0% 0%, 100% 0%, var(--x-y1, 100% 90%), var(--x-y2, 67% 83%), var(--x-y3, 33% 90%), var(--x-y4, 0% 85%));    }    .card-checkbox__body-cover-checkbox {      background: var(--check-bg, var(--background-checkbox));      border: 2px solid var(--check-border, #fff);      position: absolute;      right: 10px;      top: 10px;      z-index: 1;      width: 28px;      height: 28px;      border-radius: 50%;      opacity: var(--check-opacity, 0);      transition: transform var(--transition), opacity calc(var(--transition) * 1.2) linear;      transform: scale(var(--check-scale, 0));    }    .card-checkbox__body-cover-checkbox--svg {      width: 13px;      height: 11px;      display: inline-block;      vertical-align: top;      fill: none;      margin: 7px 0 0 5px;      stroke: var(--stroke-color, #fff);      stroke-width: 2;      stroke-linecap: round;      stroke-linejoin: round;      stroke-dasharray: 16px;      stroke-dashoffset: var(--stroke-dashoffset, 16px);      transition: stroke-dashoffset 0.4s ease var(--transition);    }    .card-checkbox__body-header {      height: var(--header-height);      background: var(--background);      padding: 0 10px 10px 10px;    }    .card-checkbox__body-header-title {      color: var(--text-headline);      font-weight: 700;      margin-bottom: 8px;    }    .card-checkbox__body-header-subtitle {      color: var(--text-color);      font-weight: 500;      font-size: 13px;      margin-bottom: 8px;    }        body .socials {      position: fixed;      display: flex;      right: 20px;      bottom: 20px;    }    body .socials > a {      display: block;      height: 28px;      margin-left: 15px;    }    body .socials > a.dribbble img {      height: 28px;    }    body .socials > a.twitter svg {      width: 32px;      height: 32px;      fill: #1da1f2;    }    body .grid {      display: grid;      grid-template-columns: repeat(3, 1fr);      grid-gap: 1rem;    }    section {      padding: 0;    }  </style></head><body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="54"><nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark py-2" id="mainNav" style="background: rgb(52, 58, 64);border-style: none;border-color: rgb(255, 255, 255);">  <div class="container">    <a class="navbar-brand" href="./index.html" style="color: var(--bs-yellow); font-family: 'Kaushan Script', serif; font-weight: bold;">BODYBALANCE</a>    <button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">      <i class="fa fa-bars"></i>    </button>    <div class="collapse navbar-collapse" id="navbarResponsive">      <ul class="navbar-nav ms-auto text-uppercase">        <li class="nav-item">          <a class="nav-link" href="./index.html#services">Description</a>        </li>        <li class="nav-item">          <a class="nav-link" href="./index.html#portfolio">Services</a>        </li>        <li class="nav-item">          <a class="nav-link" href="./index.html#about">About</a>        </li>        <li class="nav-item">          <a class="nav-link" href="./index.html#team">Team</a>        </li>        <li class="nav-item">          <a class="nav-link" href="./index.html#contact">Contact</a>        </li>        <li class="nav-item">          <a class="nav-link" href="#">SIGN UP</a>        </li>        <li class="nav-item"></li>      </ul>    </div>  </div></nav><div class="main-content">  <div class="container mb-4">    <ul class="progressbar" style="padding-left: 0">      <li id="progrebarStep1" class="">Monitor BMI</li>      <li id="progrebarStep2">Expected</li>      <li id="progrebarStep3">Nutritions</li>      <li id="progrebarStep4">Exercises</li>      <li id="progrebarStep5">PT</li>    </ul>  </div>    <div class="wrapper-steps">    <div class="container">      <div class="wrapper-steps-content">        <section class="step active" data-step="1">          <div class="container">            <h2 class="text-center text-uppercase mb-4">Monitor BMI</h2>            <div class="content-bmi-input">              <form class="">                <div class="mb-3">                  <label for="weight" class="form-label h4">Weight</label>                  <input type="email" id="weight" class="form-control form-control-lg" placeholder="Enter weight in kg"/>                </div>                <div class="mb-3">                  <label for="height" class="form-label h4">Height</label>                  <input type="password" id="height" class="form-control form-control-lg" placeholder="Enter height in cm"/>                </div>              </form>            </div>          </div>        </section>        <section class="step" data-step="2">          <div class="container">            <h3 class="text-center mb-3">Bạn đang thừa cân. Chọn mức bạn mong muốn để bắt đầu chế độ giảm cân</h5>              <section class="d-flex flex-wrap">                <div class="radio-avatar-item">                  <input type="radio" id="bmi_type_01" name="bmi_type" value="1" checked>                  <label for="bmi_type_01">                    <h2>Level 1</h2>                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>                  </label>                </div>                <div class="radio-avatar-item">                  <input type="radio" id="bmi_type_02" name="bmi_type" value="2">                  <label for="bmi_type_02">                    <h2>Level 2</h2>                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>                  </label>                </div>                <div class="radio-avatar-item">                  <input type="radio" id="bmi_type_03" name="bmi_type" value="3">                  <label for="bmi_type_03">                    <h2>Level 3</h2>                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>                  </label>                </div>                <div class="radio-avatar-item">                  <input type="radio" id="bmi_type_04" name="bmi_type" value="4" disabled>                  <label for="bmi_type_04">                    <h2>Level 4</h2>                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>                  </label>                </div>              </section>          </div>        </section>        <section class="step" data-step="3">          <div class="container">            <h3 class="text-center mb-3">Chọn cac loai thuc an mong muốn để bắt đầu chế độ giảm cân</h5>              <div class="row">                <div class="col-6 col-md-3 col-lg-2 mb-3">                  <label class="card-checkbox">                    <input class="card-checkbox__input" type="checkbox"/>                    <div class="card-checkbox__body">                      <div class="card-checkbox__body-cover">                        <img class="card-checkbox__body-cover-image" src="https://i.ibb.co/7gSQMmm/category-d.png"/>                        <span class="card-checkbox__body-cover-checkbox">                          <svg class="card-checkbox__body-cover-checkbox--svg" viewBox="0 0 12 10">                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>                          </svg>                        </span>                      </div>                      <header class="card-checkbox__body-header">                        <h5 class="card-checkbox__body-header-title">Nutrition 1</h5>                        <p class="card-checkbox__body-header-subtitle">Nutrition 1 summary</p>                      </header>                    </div>                  </label>                </div>                <div class="col-6 col-md-3 col-lg-2 mb-3">                  <label class="card-checkbox">                    <input class="card-checkbox__input" type="checkbox"/>                    <div class="card-checkbox__body">                      <div class="card-checkbox__body-cover">                        <img class="card-checkbox__body-cover-image" src="https://i.ibb.co/7gSQMmm/category-d.png"/>                        <span class="card-checkbox__body-cover-checkbox">                          <svg class="card-checkbox__body-cover-checkbox--svg" viewBox="0 0 12 10">                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>                          </svg>                        </span>                      </div>                      <header class="card-checkbox__body-header">                        <h5 class="card-checkbox__body-header-title">Nutrition 1</h5>                        <p class="card-checkbox__body-header-subtitle">Nutrition 1 summary</p>                      </header>                    </div>                  </label>                </div>              </div>          </div>        </section>        <section class="step" data-step="4">          <div class="container">            <h3 class="text-center mb-3">Chọn bai tap để bắt đầu chế độ giảm cân</h5>              <div class="row">                <div class="col-6 col-md-3 col-lg-2 mb-3">                  <label class="card-checkbox">                    <input class="card-checkbox__input" type="checkbox"/>                    <div class="card-checkbox__body">                      <div class="card-checkbox__body-cover">                        <img class="card-checkbox__body-cover-image" src="https://i.ibb.co/7gSQMmm/category-d.png"/>                        <span class="card-checkbox__body-cover-checkbox">                          <svg class="card-checkbox__body-cover-checkbox--svg" viewBox="0 0 12 10">                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>                          </svg>                        </span>                      </div>                      <header class="card-checkbox__body-header">                        <h5 class="card-checkbox__body-header-title">Exercise 1</h5>                        <p class="card-checkbox__body-header-subtitle">Exercise 1 summary</p>                      </header>                    </div>                  </label>                </div>                <div class="col-6 col-md-3 col-lg-2 mb-3">                  <label class="card-checkbox">                    <input class="card-checkbox__input" type="checkbox"/>                    <div class="card-checkbox__body">                      <div class="card-checkbox__body-cover">                        <img class="card-checkbox__body-cover-image" src="https://i.ibb.co/7gSQMmm/category-d.png"/>                        <span class="card-checkbox__body-cover-checkbox">                          <svg class="card-checkbox__body-cover-checkbox--svg" viewBox="0 0 12 10">                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>                          </svg>                        </span>                      </div>                      <header class="card-checkbox__body-header">                        <h5 class="card-checkbox__body-header-title">Exercise 1</h5>                        <p class="card-checkbox__body-header-subtitle">Exercise 1 summary</p>                      </header>                    </div>                  </label>                </div>                <div class="col-6 col-md-3 col-lg-2 mb-3">                  <label class="card-checkbox">                    <input class="card-checkbox__input" type="checkbox"/>                    <div class="card-checkbox__body">                      <div class="card-checkbox__body-cover">                        <img class="card-checkbox__body-cover-image" src="https://i.ibb.co/7gSQMmm/category-d.png"/>                        <span class="card-checkbox__body-cover-checkbox">                          <svg class="card-checkbox__body-cover-checkbox--svg" viewBox="0 0 12 10">                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>                          </svg>                        </span>                      </div>                      <header class="card-checkbox__body-header">                        <h5 class="card-checkbox__body-header-title">Exercise 1</h5>                        <p class="card-checkbox__body-header-subtitle">Exercise 1 summary</p>                      </header>                    </div>                  </label>                </div>              </div>          </div>        </section>        <section class="step" data-step="5">          <div class="container">            <h3 class="text-center mb-3">Chon PT de duoc ho tro tap luyen</h5>            <style>              section > .radio-avatar-item {                flex: 1;                padding: 0.5rem;                min-width: 200px;              }              .radio-avatar-item input[type=radio] {                display: none;              }              .radio-avatar-item input[type=radio]:not(:disabled) ~ label {                cursor: pointer;              }              .radio-avatar-item input[type=radio]:disabled ~ label {                color: #bcc2bf;                border-color: #bcc2bf;                box-shadow: none;                cursor: not-allowed;              }              .radio-avatar-item label {                height: 100%;                display: block;                background: white;                border: 2px solid #20df80;                border-radius: 20px;                padding: 1rem;                margin-bottom: 1rem;                text-align: center;                box-shadow: 0px 3px 10px -2px rgba(161, 170, 166, 0.5);                position: relative;              }              .radio-avatar-item input[type=radio]:checked + label {                background: #20df80;                color: white;                box-shadow: 0px 0px 20px rgba(0, 255, 128, 0.75);              }              .radio-avatar-item input[type=radio]:checked + label::after {                color: #3d3f43;                font-family: FontAwesome;                border: 2px solid #1dc973;                content: "";                font-size: 24px;                position: absolute;                top: -25px;                left: 50%;                transform: translateX(-50%);                height: 50px;                width: 50px;                line-height: 50px;                text-align: center;                border-radius: 50%;                background: white;                box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.25);              }                            .radio-avatar-item img{                width: 170px;                height: 170px;                border-radius: 50%;              }              .radio-avatar-item p {                font-weight: 900;              }                @media only screen and (max-width: 700px) {                section {                  flex-direction: column;                }              }            </style>                        <section class="d-flex flex-wrap">              <div class="radio-avatar-item">                <input type="radio" id="pt_03" name="pt" value="3">                <label for="pt_03">                  <img src="https://i.ibb.co/7gSQMmm/category-d.png" class="img-fluid" alt="">                  <h2>Kenvin</h2>                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dolorum!</p>                </label>              </div>              <div class="radio-avatar-item">                <input type="radio" id="pt_03" name="pt" value="3">                <label for="pt_03">                  <img src="https://i.ibb.co/7gSQMmm/category-d.png" class="img-fluid" alt="">                  <h2>Kenvin</h2>                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dolorum!</p>                </label>              </div>              <div class="radio-avatar-item">                <input type="radio" id="pt_03" name="pt" value="3">                <label for="pt_03">                  <img src="https://i.ibb.co/7gSQMmm/category-d.png" class="img-fluid" alt="">                  <h2>Kenvin</h2>                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dolorum!</p>                </label>              </div>              <div class="radio-avatar-item">                <input type="radio" id="pt_03" name="pt" value="3">                <label for="pt_03">                  <img src="https://i.ibb.co/7gSQMmm/category-d.png" class="img-fluid" alt="">                  <h2>Kenvin</h2>                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, dolorum!</p>                </label>              </div>            </section>                      </div>        </section>      </div>      <div class="wrapper-steps-button d-flex justify-content-between">        <button class="btn btn-primary prev">Prev</button>        <button class="btn btn-primary next active">Next</button>      </div>    </div>  </div></div><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script><script src="https://code.jquery.com/jquery-3.3.1.min.js"></script><script src="assets/js/script.min.js"></script><script>  $('.wrapper-steps-button').on('click', '.prev', function(){    displayStep('prev');  });  $('.wrapper-steps-button').on('click', '.next', function(){    displayStep('next');  });  function displayStep(type = 'next') {    let minStep = 1;    let maxStep = 5;    let currentStep = parseInt($('.step.active').data('step'));    if(type == 'next'){      let nextStep = currentStep + 1;      $('.step').removeClass('active');      if(nextStep > maxStep){        nextStep = maxStep;        $('.wrapper-steps-button .next').removeClass('active');      } else {        $('.wrapper-steps-button .next').addClass('active');      }      $('.wrapper-steps-button .prev').addClass('active');      $('.step:nth-child('+nextStep+')').addClass('active');            displayProgressBar(nextStep);    } else {      let prevStep = currentStep - 1;      $('.step').removeClass('active');      if(prevStep < minStep){        prevStep = minStep;        $('.wrapper-steps-button .prev').removeClass('active');      } else {        $('.wrapper-steps-button .prev').addClass('active');      }      $('.wrapper-steps-button .next').addClass('active');      $('.step:nth-child('+prevStep+')').addClass('active');            displayProgressBar(prevStep);    }  }    function displayProgressBar(completedStep = 0) {    $('.progressbar li').removeClass('active');    for (let i = 0; i < completedStep; i++){      $('#progrebarStep'+i).addClass('active');    }  }</script></body></html>
